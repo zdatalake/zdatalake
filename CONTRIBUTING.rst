@@ -66,9 +66,10 @@ Ready to contribute? Here's how to set up `zdatalake` for local development.
 
 3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
 
-    $ mkvirtualenv zdatalake
+    $ virtualenv zdatalake
     $ cd zdatalake/
     $ python setup.py develop
+    $ pip install -r requirements_dev.txt
 
 4. Create a branch for local development::
 
