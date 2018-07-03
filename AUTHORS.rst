@@ -21,3 +21,6 @@ Contributors
 
 * Leo Gallucci <elgalu3@gmail.com>
     https://github.com/elgalu
+
+* Sergii Kamenskyi <sergukam@gmail.com>
+    https://github.com/SergKam
