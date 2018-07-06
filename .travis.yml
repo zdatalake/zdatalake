@@ -9,8 +9,24 @@ os:
   - linux
   - osx
 
+matrix:
+    include:
+        - os: linux
+          python: 2.7
+          env: TOXENV=py27
+        - os: linux
+          python: 3.5
+          env: TOXENV=py35
+        - os: linux
+          python: 3.6
+          env: TOXENV=py36
+        - os: osx
+          language: generic
+          env: TOXENV=py32
+
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install yarn; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then python --version; fi
+  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install python@3; fi
 
 install: pip install -U tox-travis
 
@@ -25,4 +41,5 @@ deploy:
   on:
     tags: true
     repo: zdatalake/zdatalake
+    condition: $TRAVIS_OS_NAME == "linux"
     python: 3.6
