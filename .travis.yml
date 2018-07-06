@@ -24,8 +24,8 @@ matrix:
           env: OSXENV=py37
 
 before_install:
-  - if [[ "${OSXENV}" == "py27" ]]; then python --version | grep "Python 2\.7"; fi
-  - if [[ "${OSXENV}" == "py27" ]]; then brew install pip; fi
+  - if [[ "${OSXENV}" == "py27" ]]; then python --version | grep "Python 2.7"; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then brew install pip; fi
   - if [[ "${OSXENV}" == "py37" ]]; then brew install python@3; fi
 
 install: pip install -U tox-travis
