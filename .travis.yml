@@ -1,13 +1,4 @@
-language: python
-
-python:
-  - 3.6
-  - 3.5
-  - 2.7
-
-os:
-  - linux
-  - osx
+language: generic
 
 matrix:
     include:
@@ -22,11 +13,14 @@ matrix:
           env: TOXENV=py36
         - os: osx
           language: generic
-          env: TOXENV=py32
+          env: OSXENV=py27
+        - os: osx
+          language: generic
+          env: OSXENV=py37
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then python --version; fi
-  # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install python@3; fi
+  - if [[ "${OSXENV}" == "py27" ]]; then python --version | grep "Python 2\.7"; fi
+  - if [[ "${OSXENV}" == "py37" ]]; then brew install python@3; fi
 
 install: pip install -U tox-travis
 
@@ -41,5 +35,5 @@ deploy:
   on:
     tags: true
     repo: zdatalake/zdatalake
-    condition: $TRAVIS_OS_NAME == "linux"
+    condition: ${TRAVIS_OS_NAME} == "linux"
     python: 3.6
