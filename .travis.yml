@@ -24,6 +24,14 @@ before_install:
 
   - if [[ "${OSXENV}" == "py37" ]];        then brew upgrade python && brew link --overwrite python@3; fi
   - if [[ "${OSXENV}" == "py37" ]];        then python3 --version 2>&1 | grep "Python 3\.7"; fi
+
+  - if [[ "${OSXENV}" == "py37" ]];        then which pip; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then which pip3; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then which python; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then whereis python; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then which python3; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then whereis python3; fi
+
   - if [[ "${OSXENV}" == "py37" ]];        then python --version 2>&1 | grep "Python 3\.7"; fi
 
   - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then pip install --upgrade pip setuptools; fi
