@@ -2,18 +2,18 @@ language: python
 
 matrix:
     include:
-        - os: linux
-          python: 2.7
-          env: TOXENV=py27
-        - os: linux
-          python: 3.5
-          env: TOXENV=py35
-        - os: linux
-          python: 3.6
-          env: TOXENV=py36
-        - os: osx
-          language: generic
-          env: OSXENV=py27
+        # - os: linux
+        #   python: 2.7
+        #   env: TOXENV=py27
+        # - os: linux
+        #   python: 3.5
+        #   env: TOXENV=py35
+        # - os: linux
+        #   python: 3.6
+        #   env: TOXENV=py36
+        # - os: osx
+        #   language: generic
+        #   env: OSXENV=py27
         - os: osx
           language: generic
           env: OSXENV=py37
@@ -22,11 +22,13 @@ before_install:
   - if [[ "${OSXENV}" == "py27" ]];        then brew unlink python; brew install python@2; brew link --overwrite python@2; fi
   - if [[ "${OSXENV}" == "py27" ]];        then python --version 2>&1 | grep "Python 2\.7"; fi
 
-  - if [[ "${OSXENV}" == "py37" ]];        then brew upgrade python && brew link --overwrite python@3; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then brew upgrade python; fi
   - if [[ "${OSXENV}" == "py37" ]];        then python3 --version 2>&1 | grep "Python 3\.7"; fi
 
+  - if [[ "${OSXENV}" == "py37" ]];        then whereis pip; fi
   - if [[ "${OSXENV}" == "py37" ]];        then which pip; fi
   - if [[ "${OSXENV}" == "py37" ]];        then which pip3; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then whereis pip3; fi
   - if [[ "${OSXENV}" == "py37" ]];        then which python; fi
   - if [[ "${OSXENV}" == "py37" ]];        then whereis python; fi
   - if [[ "${OSXENV}" == "py37" ]];        then which python3; fi
