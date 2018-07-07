@@ -28,17 +28,14 @@ before_install:
 
   - if [[ "${OSXENV}" == "py37" ]];        then python3 --version 2>&1 | grep "Python 3\.7"; fi
 
-  - if [[ "${OSXENV}" == "py27" ]]; then pip install --upgrade pip setuptools; fi
-  - if [[ "${OSXENV}" == "py37" ]]; then pip3 install --upgrade pip setuptools; fi
-
-  - if [[ "${OSXENV}" == "py37" ]];        then ls -la /usr/bin/python*; fi
-  - if [[ "${OSXENV}" == "py37" ]];        then ls -la /usr/local/bin/python*; fi
-  - if [[ "${OSXENV}" == "py37" ]];        then which python3; fi
-  - if [[ "${OSXENV}" == "py37" ]];        then whereis python3; fi
-  - if [[ "${OSXENV}" == "py37" ]];        then which pip3; fi
-  - if [[ "${OSXENV}" == "py37" ]];        then whereis pip3; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then sudo rm /usr/bin/python; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then sudo ln -s /usr/local/bin/python3 /usr/local/bin/python; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then sudo ln -s /usr/local/bin/pip3 /usr/local/bin/pip; fi
 
   - if [[ "${OSXENV}" == "py37" ]];        then python --version 2>&1 | grep "Python 3\.7"; fi
+
+  - if [[ "${OSXENV}" == "py27" ]]; then pip install --upgrade pip setuptools; fi
+  - if [[ "${OSXENV}" == "py37" ]]; then pip3 install --upgrade pip setuptools; fi
 
 install: pip install -U tox-travis
 
