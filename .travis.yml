@@ -1,9 +1,61 @@
 language: python
 
-python:
-  - 3.6
-  - 3.5
-  - 2.7
+matrix:
+    include:
+        - os: linux
+          python: 2.7
+          env:
+            - TOXENV=py27
+            - EXPECTED_PY="2.7"
+
+        - os: linux
+          python: 3.5
+          env:
+            - TOXENV=py35
+            - EXPECTED_PY="3.5"
+
+        - os: linux
+          python: 3.6
+          env:
+            - TOXENV=py36
+            - EXPECTED_PY="3.6"
+
+        - os: linux
+          dist: xenial
+          python: 3.7
+          env:
+            - TOXENV=py37
+            - EXPECTED_PY="3.7"
+
+        - os: osx
+          language: generic
+          env:
+            - OSXENV=py27
+            - EXPECTED_PY="2.7"
+            - PATH=/usr/local/bin:${PATH}
+
+        - os: osx
+          language: generic
+          env:
+            - OSXENV=py37
+            - EXPECTED_PY="3.7"
+            - PATH=/usr/local/bin:${PATH}
+
+before_install:
+  - |
+    if [[ "${OSXENV}" == "py27" ]]; then
+        brew unlink python
+        brew install python@2
+        brew link --overwrite python@2
+    elif [[ "${OSXENV}" == "py37" ]]; then
+        brew upgrade python
+        sudo ln -s /usr/local/bin/python3 /usr/local/bin/python
+        sudo ln -s /usr/local/bin/pip3 /usr/local/bin/pip
+    fi
+
+  - pip install --upgrade pip setuptools
+  - python --version 2>&1 | grep -F "Python ${EXPECTED_PY}"
+  - pip --version | grep -F "(python ${EXPECTED_PY})"
 
 install: pip install -U tox-travis
 
@@ -18,4 +70,5 @@ deploy:
   on:
     tags: true
     repo: zdatalake/zdatalake
+    condition: ${TRAVIS_OS_NAME} == "linux"
     python: 3.6
