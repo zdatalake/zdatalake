@@ -2,21 +2,33 @@ language: python
 
 matrix:
     include:
-        # - os: linux
-        #   python: 2.7
-        #   env: TOXENV=py27
-        # - os: linux
-        #   python: 3.5
-        #   env: TOXENV=py35
-        # - os: linux
-        #   python: 3.6
-        #   env: TOXENV=py36
+        - os: linux
+          python: 2.7
+          env:
+            - TOXENV=py27
+
+        - os: linux
+          python: 3.5
+          env:
+            - TOXENV=py35
+
+        - os: linux
+          python: 3.6
+          env:
+            - TOXENV=py36
+
+        - os: linux
+          python: 3.7
+          env:
+            - TOXENV=py37
+
         - os: osx
           language: generic
           env:
             - OSXENV=py27
             - EXPECTED_PY="2.7"
             - PATH=/usr/local/bin:${PATH}
+
         - os: osx
           language: generic
           env:
