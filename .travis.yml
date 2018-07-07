@@ -6,22 +6,26 @@ matrix:
           python: 2.7
           env:
             - TOXENV=py27
+            - EXPECTED_PY="2.7"
 
         - os: linux
           python: 3.5
           env:
             - TOXENV=py35
+            - EXPECTED_PY="3.5"
 
         - os: linux
           python: 3.6
           env:
             - TOXENV=py36
+            - EXPECTED_PY="3.6"
 
         - os: linux
           dist: xenial
           python: 3.7
           env:
             - TOXENV=py37
+            - EXPECTED_PY="3.7"
 
         - os: osx
           language: generic
@@ -52,18 +56,9 @@ before_install:
         sudo ln -s /usr/local/bin/pip3 /usr/local/bin/pip
     fi
 
-  # Common osx upgrades
-  - |
-    if [[ "${TRAVIS_OS_NAME}" == "py37" ]]; then
-        pip install --upgrade pip setuptools
-    fi
-
-  # Common osx checks
-  - |
-    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-        python --version 2>&1 | grep -F "Python ${EXPECTED_PY}"
-        pip --version | grep -F "(python ${EXPECTED_PY})"
-    fi
+  - pip install --upgrade pip setuptools
+  - python --version 2>&1 | grep -F "Python ${EXPECTED_PY}"
+  - pip --version | grep -F "(python ${EXPECTED_PY})"
 
 install: pip install -U tox-travis
 
