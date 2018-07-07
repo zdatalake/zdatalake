@@ -26,13 +26,12 @@ before_install:
 
   - if [[ "${OSXENV}" == "py37" ]];        then brew unlink python; brew upgrade python; brew link --overwrite python@3; fi
   # - if [[ "${OSXENV}" == "py37" ]];        then brew upgrade python; fi
-  #=> /usr/local/opt/python/libexec/bin
 
   - if [[ "${OSXENV}" == "py37" ]];        then python3 --version 2>&1 | grep "Python 3\.7"; fi
 
   # - if [[ "${OSXENV}" == "py37" ]];        then sudo rm -f /usr/bin/python /usr/local/bin/pip; fi
-  # - if [[ "${OSXENV}" == "py37" ]];        then sudo ln -s /usr/local/bin/python3 /usr/local/bin/python; fi
-  # - if [[ "${OSXENV}" == "py37" ]];        then sudo ln -s /usr/local/bin/pip3 /usr/local/bin/pip; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then sudo ln -s /usr/local/bin/python3 /usr/local/bin/python; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then sudo ln -s /usr/local/bin/pip3 /usr/local/bin/pip; fi
 
   - if [[ "${OSXENV}" == "py37" ]];        then python --version 2>&1 | grep "Python 3\.7"; fi
 
