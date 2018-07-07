@@ -1,9 +1,9 @@
 language: python
 
-python:
-  - 3.6
-  - 3.5
-  - 2.7
+# python:
+#   - 3.6
+#   - 3.5
+#   - 2.7
 
 matrix:
     include:
@@ -24,12 +24,12 @@ matrix:
           env: OSXENV=py37
 
 before_install:
+  - if [[ "${OSXENV}" == "py27" ]];        then brew install python@2; brew link --overwrite python@2; fi
   - if [[ "${OSXENV}" == "py27" ]];        then python --version 2>&1 | grep "Python 2\.7"; fi
-  - if [[ "${OSXENV}" == "py27" ]];        then brew install python@2; fi
-  # - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then brew install pip; fi
-  - if [[ "${OSXENV}" == "py37" ]];        then brew install python@3; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then brew install python@3; brew link --overwrite python@2; fi
   - if [[ "${OSXENV}" == "py37" ]];        then python3 --version 2>&1 | grep "Python 3\."; fi
   - if [[ "${OSXENV}" == "py37" ]];        then python --version 2>&1 | grep "Python 3\."; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then pip install --upgrade pip setuptools; fi
 
 install: pip install -U tox-travis
 
