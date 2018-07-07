@@ -22,7 +22,12 @@ matrix:
             - PATH=/usr/local/bin:${PATH}
 
 before_install:
-  - if [[ "${OSXENV}" == "py27" ]]; then brew unlink python; brew install python@2; brew link --overwrite python@2; fi
+  - |
+    if [[ "${OSXENV}" == "py27" ]]; then
+        brew unlink python
+        brew install python@2
+        brew link --overwrite python@2
+    fi
 
   # - if [[ "${OSXENV}" == "py37" ]]; then brew upgrade python; fi
   # - if [[ "${OSXENV}" == "py37" ]]; then sudo ln -s /usr/local/bin/python3 /usr/local/bin/python; fi
@@ -35,10 +40,17 @@ before_install:
     fi
 
   # Common osx upgrades
-  - if [[ "${OSXENV}" == "py37" ]]; then pip install --upgrade pip setuptools; fi
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "py37" ]]; then
+        pip install --upgrade pip setuptools
+    fi
+
   # Common osx checks
-  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then python --version 2>&1 | grep -F "Python ${EXPECTED_PY}"; fi
-  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then pip --version | grep -F "(python ${EXPECTED_PY})"; fi
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+        python --version 2>&1 | grep -F "Python ${EXPECTED_PY}"
+        pip --version | grep -F "(python ${EXPECTED_PY})"
+    fi
 
 install: pip install -U tox-travis
 
