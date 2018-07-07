@@ -47,10 +47,7 @@ before_install:
         brew unlink python
         brew install python@2
         brew link --overwrite python@2
-    fi
-
-  - |
-    if [[ "${OSXENV}" == "py37" ]]; then
+    elif [[ "${OSXENV}" == "py37" ]]; then
         brew upgrade python
         sudo ln -s /usr/local/bin/python3 /usr/local/bin/python
         sudo ln -s /usr/local/bin/pip3 /usr/local/bin/pip
