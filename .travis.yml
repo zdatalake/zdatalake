@@ -24,8 +24,8 @@ before_install:
   - if [[ "${OSXENV}" == "py27" ]];        then brew unlink python; brew install python@2; brew link --overwrite python@2; fi
   - if [[ "${OSXENV}" == "py27" ]];        then python --version 2>&1 | grep "Python 2\.7"; fi
 
-  - if [[ "${OSXENV}" == "py37" ]];        then brew unlink python; brew upgrade python; brew link --overwrite python@3; fi
-  # - if [[ "${OSXENV}" == "py37" ]];        then brew upgrade python; fi
+  # - if [[ "${OSXENV}" == "py37" ]];        then brew unlink python; brew upgrade python; brew link --overwrite python@3; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then brew upgrade python; fi
 
   - if [[ "${OSXENV}" == "py37" ]];        then python3 --version 2>&1 | grep "Python 3\.7"; fi
 
