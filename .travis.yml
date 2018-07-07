@@ -11,9 +11,11 @@ matrix:
         # - os: linux
         #   python: 3.6
         #   env: TOXENV=py36
-        # - os: osx
-        #   language: generic
-        #   env: OSXENV=py27
+        - os: osx
+          language: generic
+            - OSXENV=py27
+            - EXPECTED_PY="2.7"
+            - PATH=/usr/local/bin:${PATH}
         - os: osx
           language: generic
           env:
@@ -29,9 +31,6 @@ before_install:
         brew link --overwrite python@2
     fi
 
-  # - if [[ "${OSXENV}" == "py37" ]]; then brew upgrade python; fi
-  # - if [[ "${OSXENV}" == "py37" ]]; then sudo ln -s /usr/local/bin/python3 /usr/local/bin/python; fi
-  # - if [[ "${OSXENV}" == "py37" ]]; then sudo ln -s /usr/local/bin/pip3 /usr/local/bin/pip; fi
   - |
     if [[ "${OSXENV}" == "py37" ]]; then
         brew upgrade python
