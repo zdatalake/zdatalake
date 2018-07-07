@@ -23,6 +23,7 @@ before_install:
   - if [[ "${OSXENV}" == "py27" ]];        then python --version 2>&1 | grep "Python 2\.7"; fi
 
   - if [[ "${OSXENV}" == "py37" ]];        then brew unlink python; brew upgrade python; brew link --overwrite python@3; fi
+  # - if [[ "${OSXENV}" == "py37" ]];        then brew upgrade python; fi
   #=> /usr/local/opt/python/libexec/bin
 
   - if [[ "${OSXENV}" == "py37" ]];        then python3 --version 2>&1 | grep "Python 3\.7"; fi
@@ -30,12 +31,10 @@ before_install:
   - if [[ "${OSXENV}" == "py27" ]]; then pip install --upgrade pip setuptools; fi
   - if [[ "${OSXENV}" == "py37" ]]; then pip3 install --upgrade pip setuptools; fi
 
-  - if [[ "${OSXENV}" == "py37" ]];        then which python; fi
-  - if [[ "${OSXENV}" == "py37" ]];        then whereis python; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then ls -la /usr/bin/python*; fi
+  - if [[ "${OSXENV}" == "py37" ]];        then ls -la /usr/local/bin/python*; fi
   - if [[ "${OSXENV}" == "py37" ]];        then which python3; fi
   - if [[ "${OSXENV}" == "py37" ]];        then whereis python3; fi
-  - if [[ "${OSXENV}" == "py37" ]];        then whereis pip; fi
-  - if [[ "${OSXENV}" == "py37" ]];        then which pip; fi
   - if [[ "${OSXENV}" == "py37" ]];        then which pip3; fi
   - if [[ "${OSXENV}" == "py37" ]];        then whereis pip3; fi
 
