@@ -13,6 +13,7 @@ matrix:
         #   env: TOXENV=py36
         - os: osx
           language: generic
+          env:
             - OSXENV=py27
             - EXPECTED_PY="2.7"
             - PATH=/usr/local/bin:${PATH}
