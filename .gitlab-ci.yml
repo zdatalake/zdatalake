@@ -1,12 +1,13 @@
 image: python
 
 stages:
-- test
+  - test
 
 before_script:
-- curl -O https://bootstrap.pypa.io/get-pip.py
-- python get-pip.py
-- pip install -r requirements_dev.txt
+  - curl -O https://bootstrap.pypa.io/get-pip.py
+  - python get-pip.py
+  - pip install -r requirements_dev.txt
+  - python setup.py test
 
 python2:
   image: python:2.7
@@ -29,7 +30,7 @@ python36:
   script: tox -e py36
 
 python37:
-  image: python:3.7-rc
+  image: python:3.7
   stage: test
   script: tox -e py37
 
