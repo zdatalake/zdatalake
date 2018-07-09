@@ -20,7 +20,7 @@ build_script:
   - python --version
 
 test_script:
-  - dir C:\Python*.*
+  - which python
 
 # Do not build on tags (GitHub only)
 skip_tags: true
