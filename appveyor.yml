@@ -4,10 +4,10 @@
 # pip --version    #=> pip 10.0.1 from c:\python27\lib\site-packages\pip (python 2.7)
 build_script:
   - python --version
-  - dir /c/Python*.*
 
 test_script:
-  - pip --version
+  - dir C:\Python*.*
+  - ls /c/Python*.*
 #  - choco install python3
 
 # Do not build on tags (GitHub only)
