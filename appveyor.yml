@@ -6,7 +6,10 @@ clone_depth: 1
 
 build_script:
   - python --version
+  - which python
 
 test_script:
-  - choco install python3
+  - pip --version
+  - which pip
+#  - choco install python3
 
