@@ -1,15 +1,21 @@
+# which python     #=> /c/Python27/python
+# which pip        #=> /c/Python27/Scripts/pip
+# python --version #=> Python 2.7.15
+# pip --version    #=> pip 10.0.1 from c:\python27\lib\site-packages\pip (python 2.7)
+build_script:
+  - python --version
+  - dir /c/Python*.*
+
+test_script:
+  - pip --version
+#  - choco install python3
+
 # Do not build on tags (GitHub only)
 skip_tags: true
 
 #faster cloning
 clone_depth: 1
 
-build_script:
-  - python --version
-  - which python
-
-test_script:
-  - pip --version
-  - which pip
-#  - choco install python3
-
+platform:
+- x86
+- x64
