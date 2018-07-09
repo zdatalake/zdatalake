@@ -1,0 +1,13 @@
+# Do not build on tags (GitHub only)
+skip_tags: true
+
+#faster cloning
+clone_depth: 1
+
+build_script:
+  - ifconfig
+
+test_script:
+  - python --version
+  - choco install python3
+
