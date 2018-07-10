@@ -19,8 +19,8 @@ environment:
 build_script:
   - python --version
   - python setup.py develop
-  - c:\python27\python.exe -m pip install -r requirements_dev.txt
-  # - c:\python27\python.exe -m pip install -r C:\projects\zdatalake\requirements_dev.txt
+  - python -m pip install -r requirements_dev.txt
+  # - c:\python27\python.exe -m pip install -r requirements_dev.txt
   # - pip install tox
 
 test_script:
