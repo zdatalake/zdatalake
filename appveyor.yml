@@ -18,9 +18,11 @@ environment:
 # pip --version    #=> pip 10.0.1 from c:\python27\lib\site-packages\pip (python 2.7)
 build_script:
   - python --version
+  - pip install tox
 
 test_script:
   - which python
+  - tox
 
 # Do not build on tags (GitHub only)
 skip_tags: true
@@ -28,6 +30,6 @@ skip_tags: true
 #faster cloning
 clone_depth: 1
 
-platform:
-- x86
-- x64
+# platform:
+# - x86
+# - x64
