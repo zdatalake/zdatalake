@@ -1,0 +1,38 @@
+# https://ci.appveyor.com/project/elgalu/zdatalake
+environment:
+  global:
+    # https://github.com/ogrisel/python-appveyor-demo/blob/master/appveyor.yml
+    SOME_GLOBAL_ENV_VAR: "cmd /E:ON /V:ON /C .\\appveyor\\run_with_env.cmd"
+
+# matrix:
+#     - PYTHON: "C:\\Python27"
+#       PYTHON_VERSION: "2.7.x"
+#       PYTHON_ARCH: "32"
+
+#     - PYTHON: "C:\\Python27-x64"
+#       PYTHON_VERSION: "2.7.x"
+#       PYTHON_ARCH: "64"
+
+# which python     #=> /c/Python27/python
+# which pip        #=> /c/Python27/Scripts/pip
+# python --version #=> Python 2.7.15
+# pip --version    #=> pip 10.0.1 from c:\python27\lib\site-packages\pip (python 2.7)
+build_script:
+  - python --version
+  - python setup.py develop
+  - python -m pip install -r requirements_dev.txt
+
+test_script:
+  - which python
+  - flake8 zdatalake tests
+  - python setup.py test
+
+# Do not build on tags (GitHub only)
+skip_tags: true
+
+#faster cloning
+clone_depth: 1
+
+# platform:
+# - x86
+# - x64
